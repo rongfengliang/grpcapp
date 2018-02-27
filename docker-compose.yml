@@ -1,0 +1,14 @@
+version: '3'
+services:
+  cli:
+    image: grpcdemoclient
+    build:
+      context: ./grpcdemoclient
+    depends_on:
+      - server
+  server:
+    image: grpcdemoserver
+    build:
+      context: ./grpcdemoserver
+    ports:
+      - 8080
