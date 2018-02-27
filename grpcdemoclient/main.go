@@ -10,8 +10,11 @@ import (
 
 func main() {
 	client := pb.NewHelloWorldJSONClient("http://server:8080", &http.Client{})
-	resp, err := client.Hello(context.Background(), &pb.HelloReq{Subject: "World"})
-	if err == nil {
-		fmt.Println(resp.Text) // prints "Hello World"
+	for i := 1; i < 100000; i++ {
+		resp, err := client.Hello(context.Background(), &pb.HelloReq{Subject: "World"})
+		if err == nil {
+			fmt.Println(resp.Text) // prints "Hello World"
+		}
 	}
 }
+
